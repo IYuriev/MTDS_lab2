@@ -205,4 +205,66 @@ describe("DoublyLinkedList", () => {
       expect(list.findLast("R")).toBe(-1);
     });
   });
+
+  describe("clone", () => {
+    it("should clone the list correctly", () => {
+      list.append("A");
+      list.append("B");
+      const cloned = list.clone();
+      expect(cloned.length()).toBe(2);
+      expect(cloned.get(0)).toBe("A");
+      expect(cloned.get(1)).toBe("B");
+    });
+
+    it("should not affect the original list when modifying the clone", () => {
+      list.append("A");
+      const cloned = list.clone();
+      cloned.append("B");
+      expect(list.length()).toBe(1);
+      expect(cloned.length()).toBe(2);
+    });
+
+    it("should clone an empty list", () => {
+      const cloned = list.clone();
+      expect(cloned.length()).toBe(0);
+    });
+  });
+
+  describe("extend", () => {
+    it("should extend the list with elements from another list", () => {
+      const otherList = new DoublyLinkedList();
+      otherList.append("X");
+      otherList.append("Y");
+
+      list.append("A");
+      list.extend(otherList);
+
+      expect(list.length()).toBe(3);
+      expect(list.get(0)).toBe("A");
+      expect(list.get(1)).toBe("X");
+      expect(list.get(2)).toBe("Y");
+    });
+
+    it("should extend an empty list with another list", () => {
+      const otherList = new DoublyLinkedList();
+      otherList.append("X");
+      otherList.append("Y");
+
+      list.extend(otherList);
+
+      expect(list.length()).toBe(2);
+      expect(list.get(0)).toBe("X");
+      expect(list.get(1)).toBe("Y");
+    });
+
+    it("should not change the list if extending with an empty list", () => {
+      const otherList = new DoublyLinkedList();
+
+      list.append("A");
+      list.extend(otherList);
+
+      expect(list.length()).toBe(1);
+      expect(list.get(0)).toBe("A");
+    });
+  });
 });
