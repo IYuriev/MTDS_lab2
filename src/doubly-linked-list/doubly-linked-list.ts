@@ -20,4 +20,26 @@ export class DoublyLinkedList {
     this.tail = null;
     this.size = 0;
   }
+
+  length(): number {
+    return this.size;
+  }
+
+  append(element: string): void {
+    const newNode = new Node(element);
+    if (!this.tail) {
+      this.head = this.tail = newNode;
+    } else {
+      this.tail.next = newNode;
+      newNode.prev = this.tail;
+      this.tail = newNode;
+    }
+    this.size++;
+  }
+
+  clear(): void {
+    this.head = null;
+    this.tail = null;
+    this.size = 0;
+  }
 }
