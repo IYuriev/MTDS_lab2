@@ -36,6 +36,14 @@ export class ArrayBasedList {
     this.list = [];
   }
 
+  findFirst(element: string): number {
+    return this.list.indexOf(element);
+  }
+
+  findLast(element: string): number {
+    return this.list.lastIndexOf(element);
+  }
+
   private validateIndex(index: number): void {
     if (index < 0 || index >= this.list.length) {
       throw new Error("Index out of bounds");
