@@ -143,4 +143,22 @@ export class DoublyLinkedList {
     }
     return -1;
   }
+
+  clone(): DoublyLinkedList {
+    const newList = new DoublyLinkedList();
+    let current = this.head;
+    while (current) {
+      newList.append(current.value);
+      current = current.next;
+    }
+    return newList;
+  }
+
+  extend(elements: DoublyLinkedList): void {
+    let current = elements.head;
+    while (current) {
+      this.append(current.value);
+      current = current.next;
+    }
+  }
 }
