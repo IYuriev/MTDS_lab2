@@ -95,4 +95,30 @@ export class DoublyLinkedList {
     }
     return current!.value;
   }
+
+  deleteAll(element: string): void {
+    let current = this.head;
+    while (current) {
+      if (current.value === element) {
+        if (current.prev) current.prev.next = current.next;
+        if (current.next) current.next.prev = current.prev;
+        if (current === this.head) this.head = current.next;
+        if (current === this.tail) this.tail = current.prev;
+        this.size--;
+      }
+      current = current.next;
+    }
+  }
+
+  reverse(): void {
+    let current = this.head;
+    let temp = null;
+    while (current) {
+      temp = current.prev;
+      current.prev = current.next;
+      current.next = temp;
+      current = current.prev;
+    }
+    if (temp) this.head = temp.prev;
+  }
 }
