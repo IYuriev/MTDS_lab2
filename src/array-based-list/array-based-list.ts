@@ -14,8 +14,23 @@ export class ArrayBasedList {
   }
 
   get(index: number): string {
-    if (index < 0 || index >= this.list.length)
-      throw new Error("Index out of bounds");
+    this.validateIndex(index);
     return this.list[index];
+  }
+
+  insert(element: string, index: number): void {
+    this.validateIndex(index);
+    this.list.splice(index, 0, element);
+  }
+
+  delete(index: number): string {
+    this.validateIndex(index);
+    return this.list.splice(index, 1)[0];
+  }
+
+  private validateIndex(index: number): void {
+    if (index < 0 || index >= this.list.length) {
+      throw new Error("Index out of bounds");
+    }
   }
 }
