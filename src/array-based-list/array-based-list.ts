@@ -28,6 +28,14 @@ export class ArrayBasedList {
     return this.list.splice(index, 1)[0];
   }
 
+  deleteAll(element: string): void {
+    this.list = this.list.filter((e) => e !== element);
+  }
+
+  clear(): void {
+    this.list = [];
+  }
+
   private validateIndex(index: number): void {
     if (index < 0 || index >= this.list.length) {
       throw new Error("Index out of bounds");
