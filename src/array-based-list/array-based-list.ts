@@ -44,6 +44,20 @@ export class ArrayBasedList {
     return this.list.lastIndexOf(element);
   }
 
+  reverse(): void {
+    this.list.reverse();
+  }
+
+  clone(): ArrayBasedList {
+    const newList = new ArrayBasedList();
+    newList.list = [...this.list];
+    return newList;
+  }
+
+  extend(elements: string[]): void {
+    this.list = [...this.list, ...elements];
+  }
+
   private validateIndex(index: number): void {
     if (index < 0 || index >= this.list.length) {
       throw new Error("Index out of bounds");
