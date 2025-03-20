@@ -79,4 +79,31 @@ describe("ArrayBasedList", () => {
       expect(() => list.delete(2)).toThrow("Index out of bounds");
     });
   });
+
+  describe("deleteAll", () => {
+    it("should delete all occurrences of an element", () => {
+      list.append("A");
+      list.append("B");
+      list.append("A");
+      list.deleteAll("A");
+      expect(list.length()).toBe(1);
+      expect(list.get(0)).toBe("B");
+    });
+
+    it("should not delete anything if the element does not exist", () => {
+      list.append("A");
+      list.append("B");
+      list.deleteAll("C");
+      expect(list.length()).toBe(2);
+    });
+  });
+
+  describe("clear", () => {
+    it("should clear the list", () => {
+      list.append("A");
+      list.append("B");
+      list.clear();
+      expect(list.length()).toBe(0);
+    });
+  });
 });
