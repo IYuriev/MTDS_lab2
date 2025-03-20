@@ -132,4 +132,51 @@ describe("DoublyLinkedList", () => {
       expect(() => list.delete(2)).toThrow("Index out of bounds");
     });
   });
+
+  describe("deleteAll", () => {
+    it("should delete all occurrences of an element", () => {
+      list.append("A");
+      list.append("B");
+      list.append("A");
+      list.deleteAll("A");
+      expect(list.length()).toBe(1);
+      expect(list.get(0)).toBe("B");
+    });
+
+    it("should not delete anything if the element does not exist", () => {
+      list.append("A");
+      list.append("B");
+      list.deleteAll("C");
+      expect(list.length()).toBe(2);
+    });
+
+    it("should delete the only element in the list", () => {
+      list.append("A");
+      list.deleteAll("A");
+      expect(list.length()).toBe(0);
+    });
+  });
+
+  describe("reverse", () => {
+    it("should reverse the list", () => {
+      list.append("A");
+      list.append("B");
+      list.append("C");
+      list.reverse();
+      expect(list.get(0)).toBe("C");
+      expect(list.get(1)).toBe("B");
+      expect(list.get(2)).toBe("A");
+    });
+
+    it("should reverse an empty list", () => {
+      list.reverse();
+      expect(list.length()).toBe(0);
+    });
+
+    it("should reverse a list with one element", () => {
+      list.append("A");
+      list.reverse();
+      expect(list.get(0)).toBe("A");
+    });
+  });
 });
