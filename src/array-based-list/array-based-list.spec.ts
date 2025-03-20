@@ -132,4 +132,50 @@ describe("ArrayBasedList", () => {
       expect(list.findLast("R")).toBe(-1);
     });
   });
+
+  describe("reverse", () => {
+    it("should reverse the list", () => {
+      list.append("A");
+      list.append("B");
+      list.append("C");
+      list.reverse();
+      expect(list.get(0)).toBe("C");
+      expect(list.get(1)).toBe("B");
+      expect(list.get(2)).toBe("A");
+    });
+
+    it("should reverse an empty list", () => {
+      list.reverse();
+      expect(list.length()).toBe(0);
+    });
+  });
+
+  describe("clone", () => {
+    it("should clone the list correctly", () => {
+      list.append("A");
+      list.append("B");
+      const cloned = list.clone();
+      expect(cloned.length()).toBe(2);
+      expect(cloned.get(0)).toBe("A");
+      expect(cloned.get(1)).toBe("B");
+    });
+
+    it("should not affect the original list when modifying the clone", () => {
+      list.append("A");
+      const cloned = list.clone();
+      cloned.append("B");
+      expect(list.length()).toBe(1);
+      expect(cloned.length()).toBe(2);
+    });
+  });
+
+  describe("extend", () => {
+    it("should extend the list with another list", () => {
+      list.append("A");
+      list.extend(["B", "C"]);
+      expect(list.length()).toBe(3);
+      expect(list.get(1)).toBe("B");
+      expect(list.get(2)).toBe("C");
+    });
+  });
 });
