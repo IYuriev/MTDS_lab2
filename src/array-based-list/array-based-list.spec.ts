@@ -106,4 +106,30 @@ describe("ArrayBasedList", () => {
       expect(list.length()).toBe(0);
     });
   });
+
+  describe("findFirst", () => {
+    it("should find the first occurrence of an element", () => {
+      list.append("X");
+      list.append("Y");
+      list.append("X");
+      expect(list.findFirst("X")).toBe(0);
+    });
+
+    it("should return -1 if element is not found", () => {
+      expect(list.findFirst("R")).toBe(-1);
+    });
+  });
+
+  describe("findLast", () => {
+    it("should find the last occurrence of an element", () => {
+      list.append("X");
+      list.append("Y");
+      list.append("X");
+      expect(list.findLast("X")).toBe(2);
+    });
+
+    it("should return -1 if element is not found", () => {
+      expect(list.findLast("R")).toBe(-1);
+    });
+  });
 });
