@@ -121,4 +121,26 @@ export class DoublyLinkedList {
     }
     if (temp) this.head = temp.prev;
   }
+
+  findFirst(element: string): number {
+    let current = this.head;
+    let index = 0;
+    while (current) {
+      if (current.value === element) return index;
+      current = current.next;
+      index++;
+    }
+    return -1;
+  }
+
+  findLast(element: string): number {
+    let current = this.tail;
+    let index = this.size - 1;
+    while (current) {
+      if (current.value === element) return index;
+      current = current.prev;
+      index--;
+    }
+    return -1;
+  }
 }
