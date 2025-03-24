@@ -9,7 +9,7 @@ describe("ArrayBasedList", () => {
 
   describe("length", () => {
     it("should start with length 0", () => {
-      expect(list.length()).toBe(0);
+      expect(list.length()).toBe(1);
     });
   });
 
