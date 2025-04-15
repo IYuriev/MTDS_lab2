@@ -154,11 +154,9 @@ export class DoublyLinkedList {
     return newList;
   }
 
-  extend(elements: DoublyLinkedList): void {
-    let current = elements.head;
-    while (current) {
-      this.append(current.value);
-      current = current.next;
+  extend(elements: string[]): void {
+    for (const element of elements) {
+      this.append(element);
     }
   }
 }
